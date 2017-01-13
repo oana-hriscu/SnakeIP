@@ -1,49 +1,58 @@
 #include "Node.h"
 #include <SFML/Graphics.hpp>
 
-const float Node::Width = 12.f;
-const float Node::Height = 12.f;
+using namespace nsSnake;
 
-Node::Node(sf::Vector2f position): thePosition(position)
+const float Node::Width = 10.f;
+const float Node::Height = 10.f;
+
+Node::Node(sf::Vector2f position)
+	: position_(position)
 {
-	shape.setPosition(thePosition);
-	shape.setFillColor(sf::Color::Green);
-	shape.setRadius(8.f);
-	shape.setOutlineColor(sf::Color::White);
-	shape.setOutlineThickness(-1.f);
+	/*shape_.setPosition(position_);
+	shape_.setFillColor(sf::Color::Blue);
+	shape_.setSize(sf::Vector2f(Node::Width, Node::Height));
+	shape_.setOutlineColor(sf::Color::White);
+	shape_.setOutlineThickness(-1.f);*/
+
+	tex.loadFromFile("Image/snake.png");
+	shape_.setTexture(tex);
+	shape_.setPosition(position_);
+	shape_.setScale(sf::Vector2f(0.3f, 0.3f));
 }
 
 void Node::setPos(sf::Vector2f position)
 {
-	thePosition = position;
-	shape.setPosition(thePosition);
+	position_ = position;
+	shape_.setPosition(position_);
 }
 
 void Node::setPos(float x, float y)
 {
-	thePosition.x = x;
-	thePosition.y = y;
-	shape.setPosition(thePosition);
+	position_.x = x;
+	position_.y = y;
+	shape_.setPosition(position_);
 }
 
 void Node::move(float xOffset, float yOffset)
 {
-	thePosition.x += xOffset;
-	thePosition.y += yOffset;
-	shape.setPosition(thePosition);
+	position_.x += xOffset;
+	position_.y += yOffset;
+	shape_.setPosition(position_);
 }
 
 sf::FloatRect Node::getBounds() const
 {
-	return shape.getGlobalBounds();
+	return shape_.getGlobalBounds();
 }
 
 sf::Vector2f Node::getPos() const
 {
-	return thePosition;
+	return position_;
 }
 
 void Node::render(sf::RenderWindow& window)
 {
-	window.draw(shape);
+	shape_.setTexture(tex);
+	window.draw(shape_);
 }

@@ -1,12 +1,22 @@
 #include "Food.h"
 
-Food::Food(sf::Vector2f position) 
+using namespace nsSnake;
+
+//const float Food::SemiDiameter = 5.f;
+//const float Food::Width = 10.f;
+//const float Food::Height = 10.f;
+
+
+Food::Food(sf::Vector2f position)
 {
 	foodtexture.loadFromFile("Image/bug.png");
 	sf::Sprite sprite(foodtexture);
-	sprite.setScale(0.08f, 0.08f);
+	sprite.setScale(0.1f, 0.1f);
 	LadyBug = sprite;
 	LadyBug.setPosition(position);
+	/*shape_.setPosition(position);
+	shape_.setRadius(Food::SemiDiameter);
+	shape_.setFillColor(sf::Color::Red);*/
 }
 
 void Food::render(sf::RenderWindow& window)
@@ -19,5 +29,3 @@ sf::FloatRect Food::getBounds() const
 {
 	return LadyBug.getGlobalBounds();
 }
-
-
