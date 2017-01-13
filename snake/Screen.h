@@ -1,6 +1,4 @@
 #pragma once
-#ifndef SCREEN_H
-#define SCREEN_H
 
 #include <SFML/Graphics.hpp>
 
@@ -13,4 +11,5 @@ public:
 
 };
 
-#endif
+
+

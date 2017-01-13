@@ -1,53 +1,53 @@
 #pragma once
-#ifndef SNAKE_H
-#define SNAKE_H
 #include <SFML/Graphics.hpp>
-
 #include <vector>
 #include "Node.h"
 #include "Food.h"
+#include "AppleDouble.h"
+#include "SpiderShrink.h"
 
-namespace nsSnake
+enum class Movement
 {
-	enum class Movement
-	{
-		Left_Arrow, Right_Arrow, Up_Arrow, Down_Arrow
-	};
+	Left_Arrow, Right_Arrow, Up_Arrow, Down_Arrow
+};
 
-	class SnakeCharacter
-	{
-	public:
-		SnakeCharacter();
+class SnakeCharacter
+{
+public:
+	SnakeCharacter();
 
-		void handleInput();
-		void update(sf::Time delta);
-		void render(sf::RenderWindow& window);
-		void FoodCollisions(std::vector<Food>& foods);
+	void handleInput();
+	void update(sf::Time delta);
+	void render(sf::RenderWindow& window);
 
-		bool hitSelf() const;
-		unsigned getSize() const;
+	void FoodCollisions(std::vector<Food>& foods);
+	void AppleCollisions(std::vector<AppleDouble> & apple);
+	void SpiderCollisions(std::vector<SpiderShrink> & spider);
 
-	private:
-		void move();
-		void grow();
-		void BorderCollision();
-		void SnakeCollision();
-		void initNodes();
-		bool hitSelf_;
+	bool hitSelf() const;
+	unsigned getSize() const;
 
-		sf::Sprite Head; 
-		sf::Texture HeadTexture;
-		sf::Sprite Tail; 
-		sf::Texture TailTexture;
+private:
+	void move();
+	void grow();
+	void shrink();
+	void BorderCollision();
+	void SnakeCollision();
+	void initNodes();
 
-		bool JustMadeATurn;
+	bool SnakeHitsSelf;
 
-		sf::Vector2f position_;
-		Movement direction_;
+	float Speed = 2;
 
-		std::vector<Node> nodes_;
-		static const int InitialSize;
-	};
-}
+	Movement dir;
 
-#endif
+	sf::SoundBuffer EatBuffer;
+	sf::Sound EatTune;
+	sf::SoundBuffer SpiderBuffer;
+	sf::Sound SpiderTune;
+	sf::SoundBuffer AppleBuffer;
+	sf::Sound AppleTune;
+
+	std::vector<Node> nodes;
+	static const int InitialSize;
+};

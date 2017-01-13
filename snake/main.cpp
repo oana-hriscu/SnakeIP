@@ -2,8 +2,6 @@
 
 #include "SnakeGame.h"
 
-using namespace nsSnake;
-
 int main()
 {
 	SnakeGame game;
