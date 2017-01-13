@@ -1,21 +1,31 @@
 #pragma once
+#ifndef FRUIT_H
+#define FRUIT_H
 
 #include <SFML/Graphics.hpp>
 #include "SnakeGame.h"
 
-class Food
+namespace nsSnake
 {
-public:
-	Food(sf::Vector2f position = sf::Vector2f(0, 0));
+	class Food
+	{
+	public:
+		Food(sf::Vector2f position = sf::Vector2f(0, 0));
 
-	void render(sf::RenderWindow& window);
-	sf::FloatRect getBounds() const;
+		void render(sf::RenderWindow& window);
+		sf::FloatRect getBounds() const;
+		//static const float Width;
+		//static const float Height;
 
-private:
-	sf::Texture foodtexture;
-	sf::Sprite LadyBug;
+	private:
+		//static const float SemiDiameter;
+		sf::Texture foodtexture;
+		sf::Sprite LadyBug;
 
 
 
-};
+	};
 
+}
+
+#endif

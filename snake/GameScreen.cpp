@@ -1,42 +1,40 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 #include <memory>
+
 #include "GameScreen.h"
 #include "GameOverScreen.h"
 #include "SnakeGame.h"
 
-GameScreen::GameScreen() : theSnake()
+using namespace nsSnake;
+
+GameScreen::GameScreen() : snake_()
 {
-	bgMusic1.openFromFile("Sound/Chocobo-Theme-8bit.wav");
-	bgMusic1.setLoop(true);
-	bgMusic1.play();
+
 }
 
 void GameScreen::handleInput(sf::RenderWindow& window)
 {
-	theSnake.handleInput();
+	snake_.handleInput();
 }
 
 void GameScreen::update(sf::Time delta)
 {
-	if (food.size() == 0)
-		generateFood();
-
-	theSnake.update(delta);
-	theSnake.FoodCollisions(food);
-	if (theSnake.hitSelf())
-	{
-		bgMusic1.setLoop(false);
-		SnakeGame::Screen = std::make_shared<GameOverScreen>(theSnake.getSize());
-	}
+	if (food_.size() == 0)
+		 generateFood();
+	
+		snake_.update(delta);
+	snake_.FoodCollisions(food_);
+	if (snake_.hitSelf())
+		 SnakeGame::Screen = std::make_shared<GameOverScreen>(snake_.getSize());
 }
 
 void GameScreen::render(sf::RenderWindow& window)
 {
-	theSnake.render(window);
-
-	for (auto food : food)
-		food.render(window);
+	snake_.render(window);
+	
+		for (auto food : food_)
+		 food.render(window);
 }
 
 void GameScreen::generateFood()
@@ -45,6 +43,6 @@ void GameScreen::generateFood()
 	engine.seed(time(NULL));
 	static std::uniform_int_distribution<int> xDistribution(0, SnakeGame::Width - Node::Width);
 	static std::uniform_int_distribution<int> yDistribution(0, SnakeGame::Height - Node::Height);
-
-	food.push_back(Food(sf::Vector2f(xDistribution(engine), yDistribution(engine))));
+	
+	food_.push_back(Food(sf::Vector2f(xDistribution(engine), yDistribution(engine))));
 }
