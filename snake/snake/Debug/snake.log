@@ -1,0 +1,5 @@
+﻿  SnakeCharacter.cpp
+c:\users\acer aspire one\desktop\snake\snake\snake\snakecharacter.cpp(119): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\acer aspire one\desktop\snake\snake\snake\snakecharacter.cpp(123): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  snake.vcxproj -> C:\Users\Acer Aspire One\Desktop\snake\snake\Debug\snake.exe
+  snake.vcxproj -> C:\Users\Acer Aspire One\Desktop\snake\snake\Debug\snake.pdb (Full PDB)
