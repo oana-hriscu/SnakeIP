@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <memory>
+#include <string>
+#include <string.h>
 #include "SnakeGame.h"
 #include "GameScreen.h"
 #include "GameOverScreen.h"
@@ -17,7 +19,7 @@ GameOverScreen::GameOverScreen(std::size_t score) : HiScore(score)
 
 	font.loadFromFile("Fonts/gameover.ttf");
 	text.setFont(font);
-	text.setString("\n\n\n\n\n\n\n\nYour score: " + std::to_string(score) + "\n\nPress [SPACE] to retry""\n\nPress [ESC] to exit game");
+	text.setString("\n\n\n\n\n\n\n\n" + std::to_string(score) + "\n\nPress [SPACE] to retry""\n\nPress [ESC] to exit game");
 	text.setCharacterSize(27);
 	text.setFillColor(sf::Color::Black);
 

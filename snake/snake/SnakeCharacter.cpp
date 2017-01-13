@@ -11,12 +11,20 @@
 const int SnakeCharacter::InitialSize = 5;
 
 SnakeCharacter::SnakeCharacter() : dir(Movement::Up_Arrow), SnakeHitsSelf(false)
-{
+{	
 	initNodes();
 
 	EatBuffer.loadFromFile("Sound/Cartoon_Boink_Sound_Effect.wav");
 	EatTune.setBuffer(EatBuffer);
 	EatTune.setVolume(30);
+
+	AppleBuffer.loadFromFile("Sound/Heart.wav");
+	AppleTune.setBuffer(AppleBuffer);
+	AppleTune.setVolume(15);
+
+	SpiderBuffer.loadFromFile("Sound/Spider-Notice.wav");
+	SpiderTune.setBuffer(SpiderBuffer);
+	SpiderTune.setVolume(30);
 }
 
 void SnakeCharacter::initNodes()
@@ -29,13 +37,13 @@ void SnakeCharacter::initNodes()
 
 void SnakeCharacter::handleInput()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)&& dir != Movement::Down_Arrow)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && dir != Movement::Down_Arrow)
 		dir = Movement::Up_Arrow;
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)&& dir != Movement::Up_Arrow)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && dir != Movement::Up_Arrow)
 		dir = Movement::Down_Arrow;
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)&& dir != Movement::Right_Arrow)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && dir != Movement::Right_Arrow)
 		dir = Movement::Left_Arrow;
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)&& dir != Movement::Left_Arrow)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && dir != Movement::Left_Arrow)
 		dir = Movement::Right_Arrow;
 }
 
@@ -63,6 +71,42 @@ void SnakeCharacter::FoodCollisions(std::vector<Food>& foods)
 		foods.erase(toRemove);
 	}
 }
+void SnakeCharacter::AppleCollisions(std::vector<AppleDouble> & apple)
+{
+	decltype(apple.begin()) toRemove = apple.end();
+
+	for (auto& it = apple.begin(); it != apple.end(); ++it)
+	{
+		if (it->getBounds().intersects(nodes[0].getBounds()))
+			toRemove = it;
+	}
+
+	if (toRemove != apple.end())
+	{
+		AppleTune.play();
+		grow();
+		grow();
+		apple.erase(toRemove);
+	}
+}
+
+void SnakeCharacter::SpiderCollisions(std::vector<SpiderShrink> & spider)
+{
+	decltype(spider.begin()) toRemove = spider.end();
+
+	for (auto& it = spider.begin(); it != spider.end(); ++it)
+	{
+		if (it->getBounds().intersects(nodes[0].getBounds()))
+			toRemove = it;
+	}
+
+	if (toRemove != spider.end())
+	{
+		SpiderTune.play();
+		shrink();
+		spider.erase(toRemove);
+	}
+}
 
 void SnakeCharacter::grow()
 {
@@ -87,9 +131,38 @@ void SnakeCharacter::grow()
 	}
 }
 
+void SnakeCharacter::shrink()
+{
+	switch (dir)
+	{
+	case Movement::Up_Arrow:
+		nodes.pop_back();
+		nodes.pop_back();
+		nodes.pop_back();
+
+		break;
+	case Movement::Down_Arrow:
+		nodes.pop_back();
+		nodes.pop_back();
+		nodes.pop_back();
+		break;
+	case Movement::Left_Arrow:
+		nodes.pop_back();
+		nodes.pop_back();
+		nodes.pop_back();
+		break;
+	case Movement::Right_Arrow:
+		nodes.pop_back();
+		nodes.pop_back();
+		nodes.pop_back();
+		break;
+	}
+}
+
 unsigned SnakeCharacter::getSize() const
 {
 	return nodes.size();
+
 }
 
 bool SnakeCharacter::hitSelf() const
@@ -131,20 +204,27 @@ void SnakeCharacter::move()
 	{
 		nodes[i].setPos(nodes.at(i - 1).getPos());
 	}
-
 	switch (dir)
 	{
 	case Movement::Up_Arrow:
-		nodes[0].move(0, -Node::Height);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+			nodes[0].move(0, -(Speed * Node::Height));
+		else nodes[0].move(0, -Node::Height);
 		break;
 	case Movement::Down_Arrow:
-		nodes[0].move(0, Node::Height);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+			nodes[0].move(0, Speed * Node::Height);
+		else nodes[0].move(0, Node::Height);
 		break;
 	case Movement::Left_Arrow:
-		nodes[0].move(-Node::Width, 0);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+			nodes[0].move(-(Speed * Node::Width), 0);
+		else nodes[0].move(-Node::Width, 0);
 		break;
 	case Movement::Right_Arrow:
-		nodes[0].move(Node::Width, 0);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+			nodes[0].move(Speed * Node::Width, 0);
+		else nodes[0].move(Node::Width, 0);
 		break;
 	}
 }

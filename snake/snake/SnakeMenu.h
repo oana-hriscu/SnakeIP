@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "Screen.h"
 #include <SFML/Audio.hpp>

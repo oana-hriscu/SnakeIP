@@ -18,7 +18,8 @@ public:
 	static const float Height;
 
 private:
-	sf::CircleShape shape;
+	sf::Sprite shape;
+	sf::Texture tex;
 	sf::Vector2f thePosition;
 };
 

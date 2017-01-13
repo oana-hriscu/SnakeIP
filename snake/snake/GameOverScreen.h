@@ -3,7 +3,6 @@
 
 #include "Screen.h"
 
-
 class GameOverScreen : public Screen
 {
 public:

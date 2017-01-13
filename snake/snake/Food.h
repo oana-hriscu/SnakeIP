@@ -14,8 +14,5 @@ public:
 private:
 	sf::Texture foodtexture;
 	sf::Sprite LadyBug;
-
-
-
 };
 

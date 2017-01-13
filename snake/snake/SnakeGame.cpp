@@ -13,10 +13,6 @@ SnakeGame::SnakeGame(): window(sf::VideoMode(SnakeGame::Width, SnakeGame::Height
 	texture.loadFromFile("Image/bck.png");
 	sf::Sprite sprite(texture);
 	background_sprite = sprite;
-
-	/*bgMusic.openFromFile("Sound/Chocobo-Theme-8bit.wav");
-	bgMusic.setLoop(true);
-	bgMusic.play();*/
 	
 }
 

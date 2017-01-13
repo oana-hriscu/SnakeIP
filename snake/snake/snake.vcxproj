@@ -152,25 +152,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AppleDouble.cpp" />
     <ClCompile Include="Food.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="InstructionScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="SnakeCharacter.cpp" />
     <ClCompile Include="SnakeGame.cpp" />
     <ClCompile Include="SnakeMenu.cpp" />
+    <ClCompile Include="SpiderShrink.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppleDouble.h" />
     <ClInclude Include="Food.h" />
     <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="InstructionScreen.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="SnakeCharacter.h" />
     <ClInclude Include="SnakeGame.h" />
     <ClInclude Include="SnakeMenu.h" />
+    <ClInclude Include="SpiderShrink.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

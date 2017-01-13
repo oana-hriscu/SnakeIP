@@ -4,13 +4,19 @@
 const float Node::Width = 12.f;
 const float Node::Height = 12.f;
 
-Node::Node(sf::Vector2f position): thePosition(position)
+Node::Node(sf::Vector2f position) : thePosition(position)
 {
-	shape.setPosition(thePosition);
+	/*shape.setPosition(thePosition);
 	shape.setFillColor(sf::Color::Green);
 	shape.setRadius(8.f);
 	shape.setOutlineColor(sf::Color::White);
-	shape.setOutlineThickness(-1.f);
+	shape.setOutlineThickness(-1.f);*/
+
+	tex.loadFromFile("Image/snakeskin.png");
+	shape.setTexture(tex);
+	shape.setPosition(position);
+	shape.setScale(sf::Vector2f(0.35f, 0.35f));
+
 }
 
 void Node::setPos(sf::Vector2f position)
@@ -45,5 +51,6 @@ sf::Vector2f Node::getPos() const
 
 void Node::render(sf::RenderWindow& window)
 {
+	shape.setTexture(tex);
 	window.draw(shape);
 }

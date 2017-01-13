@@ -4,6 +4,8 @@
 #include "SnakeCharacter.h"
 #include "Food.h"
 #include <SFML/Audio.hpp>
+#include "AppleDouble.h"
+#include "SpiderShrink.h"
 
 class GameScreen : public Screen
 {
@@ -14,9 +16,14 @@ public:
 	void update(sf::Time delta) override;
 	void render(sf::RenderWindow& window) override;
 	void generateFood();
+	void generateApple();
+	void generateSpider();
 
 private:
 	SnakeCharacter theSnake;
 	std::vector<Food> food;
+	std::vector<AppleDouble> apple;
+	std::vector<SpiderShrink> spider;
+
 	sf::Music bgMusic1;
 };
