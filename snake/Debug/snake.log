@@ -1,3 +1,18 @@
-﻿  GameOverScreen.cpp
+﻿  SnakeMenu.cpp
+  SnakeGame.cpp
+  SnakeCharacter.cpp
+c:\users\hriscu ilie\desktop\snake\snake\snake\snakecharacter.cpp(119): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\hriscu ilie\desktop\snake\snake\snake\snakecharacter.cpp(123): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  Screen.cpp
+  Node.cpp
+  main.cpp
+  GameScreen.cpp
+c:\users\hriscu ilie\desktop\snake\snake\snake\gamescreen.cpp(45): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\hriscu ilie\desktop\snake\snake\snake\gamescreen.cpp(46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\hriscu ilie\desktop\snake\snake\snake\gamescreen.cpp(47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\hriscu ilie\desktop\snake\snake\snake\gamescreen.cpp(49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameOverScreen.cpp
+  Food.cpp
+  Generating Code...
   snake.vcxproj -> C:\Users\hriscu ilie\Desktop\snake\snake\Debug\snake.exe
   snake.vcxproj -> C:\Users\hriscu ilie\Desktop\snake\snake\Debug\snake.pdb (Full PDB)
